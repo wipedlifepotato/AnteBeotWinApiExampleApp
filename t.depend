@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1676273427 source:c:\poolserver\justfortest\t\main.cpp
+	"MainWindow.h"
+
+1676274492 source:c:\poolserver\justfortest\t\src\abstractwindow.cpp
+	"AbstractWindow.h"
+
+1676274703 c:\poolserver\justfortest\t\include\abstractwindow.h
+	<windows.h>
+	<stdio.h>
+	<windowsx.h>
+	<assert.h>
+	<string>
+	<map>
+
+1676293881 c:\poolserver\justfortest\t\include\mainwindow.h
+	"BaseWindow.h"
+	<winhttp.h>
+	<objidl.h>
+	<gdiplus.h>
+	<iostream>
+
+1676293570 source:c:\poolserver\justfortest\t\src\mainwindow.cpp
+	"MainWindow.h"
+	<iostream>
+	<string>
+	<strsafe.h>
+	"Util.h"
+	<jansson.h>
+	<fstream>
+	<sstream>
+	<winuser.h>
+
+1676274867 source:c:\poolserver\justfortest\t\src\basewindow.cpp
+	"BaseWindow.h"
+
+1676284003 c:\poolserver\justfortest\t\include\basewindow.h
+	<windows.h>
+	<windowsx.h>
+	<assert.h>
+
+1676284003 source:c:\poolserver\justfortest\t\src\main.cpp
+	"MainWindow.h"
+	<gdiplus.h>
+
+1676277488 source:c:\poolserver\justfortest\t\util.cpp
+
+1676294181 source:c:\poolserver\justfortest\t\src\util.cpp
+	"Util.h"
+	<vector>
+
+1676294168 c:\poolserver\justfortest\t\include\util.h
+	<string>
+	<iostream>
+	<windows.h>
+
