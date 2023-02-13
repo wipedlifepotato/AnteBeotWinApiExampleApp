@@ -54,3 +54,51 @@
 	<iostream>
 	<windows.h>
 
+1676301506 source:c:\poolserver\justfortest\winapi\src\main.cpp
+	"MainWindow.h"
+	<gdiplus.h>
+
+1676308537 c:\poolserver\justfortest\winapi\include\mainwindow.h
+	"BaseWindow.h"
+
+1676308211 c:\poolserver\justfortest\winapi\include\basewindow.h
+	<windows.h>
+	<windowsx.h>
+	<assert.h>
+	<iostream>
+	<string>
+	<sstream>
+	<winuser.h>
+	<fstream>
+	<sstream>
+	<strsafe.h>
+	<objidl.h>
+	<gdiplus.h>
+	<WinInet.h>
+	<jansson.h>
+
+1676294181 source:c:\poolserver\justfortest\winapi\src\util.cpp
+	"Util.h"
+	<vector>
+
+1676294168 c:\poolserver\justfortest\winapi\include\util.h
+	<string>
+	<iostream>
+	<windows.h>
+
+1676308579 source:c:\poolserver\justfortest\winapi\src\mainwindow.cpp
+	"MainWindow.h"
+	"Util.h"
+	"AuthWindow.h"
+
+1676299449 source:c:\poolserver\justfortest\winapi\src\basewindow.cpp
+	"BaseWindow.h"
+
+1676308609 source:c:\poolserver\justfortest\winapi\src\authwindow.cpp
+	"AuthWindow.h"
+	"Util.h"
+	<jansson.h>
+
+1676303167 c:\poolserver\justfortest\winapi\include\authwindow.h
+	"BaseWindow.h"
+

@@ -3,12 +3,14 @@
 #define UNICODE
 #endif
 #include <gdiplus.h>
-using namespace Gdiplus;
 
+using namespace Gdiplus;
+int gCmdShow;
 extern "C" {
     // HINSTANCE, HINSTANCE, LPSTR, int
     int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
     {
+        gCmdShow = nCmdShow;
         GdiplusStartupInput gdiplusStartupInput;
         ULONG_PTR           gdiplusToken;
 
@@ -43,6 +45,7 @@ extern "C" {
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
+
         }
 
         return 0;

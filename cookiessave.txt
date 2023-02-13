@@ -1,0 +1,61 @@
+    BOOL displayCookies(HINTERNET hHttp) // todo: rename it to saveCookie
+    {
+            std::cout << "getCookies" << std::endl;
+            // https://learn.microsoft.com/ru-ru/windows/win32/wininet/managing-cookies
+           PWCHAR lpOutBuffer=NULL;
+           DWORD dwSize = 0;
+
+        retry:
+
+           // This call will fail on the first pass, because
+           // no buffer is allocated.
+           if(!HttpQueryInfo(hHttp,HTTP_QUERY_SET_COOKIE,
+              (LPVOID)lpOutBuffer,&dwSize,NULL))
+           {
+              if (GetLastError()==ERROR_HTTP_HEADER_NOT_FOUND)
+              {
+                 // Code to handle the case where the header isn't available.
+                 std::cerr << "header isnt available" << std::endl;
+                 puts("ret true0");
+                 return TRUE;
+              }
+              else
+              {
+                // Check for an insufficient buffer.
+                if (GetLastError()==ERROR_INSUFFICIENT_BUFFER)
+                {
+                    // Allocate the necessary buffer.
+                    lpOutBuffer = new wchar_t[dwSize];
+
+                    // Retry the call.
+                    puts("goto");
+                    goto retry;
+                }
+                else
+                {
+                    // Error handling code.
+                    if (lpOutBuffer)
+                    {
+                        std::cerr << "Can't get cookies" << std::endl;
+                       delete [] lpOutBuffer;
+                    }
+                    puts("ret false2");
+                    return FALSE;
+                }
+              }
+           }
+
+           if (lpOutBuffer)
+           {
+               printf("Cookies: %ls\n", lpOutBuffer);
+                std::wstring cookie{lpOutBuffer};
+                //std::wcout << L"cookies: " << cookie << std::endl;
+                std::wofstream  of(L"cookie.dat");
+                of << cookie;
+                of.close(); // is opptinal. because exists d
+              delete [] lpOutBuffer;
+           }
+            puts("ret true");
+           return TRUE;
+
+    }
