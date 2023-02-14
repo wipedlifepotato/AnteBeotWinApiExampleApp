@@ -6,7 +6,7 @@
 #define MENU_EXIT_ITEM 1000
 
 
-
+// TODO: to macros/template simillar windows. but for now is ok. even double code for now is ok.
 class AuthWindow : public BaseWindow<AuthWindow>
 {
 private:

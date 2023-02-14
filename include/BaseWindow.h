@@ -22,6 +22,8 @@ using namespace Gdiplus;
 #include <WinInet.h>
 #pragma comment(lib,"wininet")
 #include<jansson.h>
+#include <commctrl.h>
+
 extern int gCmdShow;
 extern BOOL progCanBeClosed;
 constexpr wchar_t * defWebDomain = L"antebeot.ru";
@@ -86,11 +88,11 @@ public:
     {
         // /user/?w=changeLanguage&lang=en_US
         std::wstring url(L"/restapi/user/?w=changeLanguage&lang="+std::wstring{lang});
-        return getPageOfReasonType(url.c_str());
+        return getPageOfReasonType(url.c_str(), false);
     }
     BOOL updateSession()
     {
-        return getPageOfReasonType(L"/restapi/user/?w=updateSession");
+        return getPageOfReasonType(L"/restapi/user/?w=updateSession", false);
     }
 public:
     static LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)

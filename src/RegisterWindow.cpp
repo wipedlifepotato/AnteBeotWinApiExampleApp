@@ -1,15 +1,16 @@
-#include"AuthWindow.h"
+#include"RegisterWindow.h"
 #include"Util.h"
 #include <jansson.h>
-BOOL AuthWindow::doAuth(const wchar_t * name, const wchar_t * pass, const wchar_t *otp, const wchar_t * captcha)
+// WARNING: to macros/template for all windows simillar maybe. for now is ok. but double of code.
+BOOL RegisterWindow::doRegister(const wchar_t * name, const wchar_t * pass, const wchar_t *pass2, const wchar_t * captcha)
 {
     //wchar_t page[1024];
 //    wsprintfA(page, _T(L"/restapi/signin/?workname=%s&workpass=%s&code=%s&captchaText=%s"), name, pass, otp, captcha);
     std::wstringstream p ;//%s&workpass=%s&code=%s&captchaText=%s" ;
-    p << L"/restapi/signin/?workname=";
+    p << L"/restapi/registration/?workname=";
     p << name; p << "&workpass=";
-    p << pass; p << "&code=";
-    p << otp; p << "&captchaText=";
+    p << pass; p << "&workpass2=";
+    p << pass2; p << "&captchaText=";
     p << captcha; p << "&lang=en_US";
     //p += name;
     //p += "&"
@@ -67,18 +68,18 @@ BOOL AuthWindow::doAuth(const wchar_t * name, const wchar_t * pass, const wchar_
 
 }
 
-VOID AuthWindow::OnCreate(void)
+VOID RegisterWindow::OnCreate(void)
 {
     loginEdit = CreateWindow(L"edit",L"Username",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
                              150,25,100,20,m_hwnd,(HMENU) 667,NULL,NULL);
     passwordEdit = CreateWindow(L"edit",L"Password",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE|ES_PASSWORD,
                                 150,50,100,20,m_hwnd,(HMENU) 667,NULL,NULL);
                                 //OTPCodeEdit, captchaTextEdit
-    OTPCodeEdit = CreateWindow(L"edit",L"none",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
+    passwordTwoEdit = CreateWindow(L"edit",L"Password",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE|ES_PASSWORD,
                                 150,75,100,20,m_hwnd,(HMENU) 667,NULL,NULL);
     captchaTextEdit = CreateWindow(L"edit",L"captcha",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
                                 150,100,110,20,m_hwnd,(HMENU) 667,NULL,NULL);
-    CreateWindow(L"button",L"Авторизироваться",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
+    CreateWindow(L"button",L"Зарегестрироваться",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
                  50,350,150,20,m_hwnd,(HMENU) ID_MYBUTTON,NULL,NULL);
     CreateWindow(L"button",L"Перерисовать капчу",WS_CHILD|BS_PUSHBUTTON|WS_VISIBLE,
                  50,250,150,20,m_hwnd,(HMENU) ID_CAPTCHAREDRAWBUT,NULL,NULL);
@@ -104,7 +105,7 @@ static VOID OnPaint(HDC hdc, PAINTSTRUCT & ps)
     pointF.Y= pointF.Y + 25;
     graphics.DrawString(L"Пароль:", -1, &font, pointF, &brush);
     pointF.Y= pointF.Y + 25;
-    graphics.DrawString(L"2фа:", -1, &font, pointF, &brush);
+    graphics.DrawString(L"Подтвердить Пароль:", -1, &font, pointF, &brush);
     pointF.Y= pointF.Y + 25;
     graphics.DrawString(L"каптча:", -1, &font, pointF, &brush);
 // https://learn.microsoft.com/ru-ru/windows/win32/gdiplus/-gdiplus-cropping-and-scaling-images-use
@@ -119,7 +120,7 @@ static VOID OnPaint(HDC hdc, PAINTSTRUCT & ps)
 }
 
 
-LRESULT AuthWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+LRESULT RegisterWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     POINT pt;
 
@@ -149,11 +150,11 @@ LRESULT AuthWindow::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
                 {
                     auto loginText = Util::Edit::getText(loginEdit);
                     auto passwordText = Util::Edit::getText(passwordEdit);
-                    auto OTPCodeText = Util::Edit::getText(OTPCodeEdit);
+                    auto passwordTwoText = Util::Edit::getText(passwordTwoEdit);
                     auto captchaText = Util::Edit::getText(captchaTextEdit);
                     //MessageBox(m_hwnd,(L"Имя пользователя: " + loginText).c_str(),L"ИнфаБокс",MB_OK|MB_ICONWARNING);
                     //MessageBox(m_hwnd,(L"Пароль пользователя: " + passwordText).c_str(),L"ИнфаБокс",MB_OK|MB_ICONWARNING);
-                    if (doAuth(loginText.c_str(), passwordText.c_str(), OTPCodeText.c_str(), captchaText.c_str()))
+                    if (doRegister(loginText.c_str(), passwordText.c_str(), passwordTwoText.c_str(), captchaText.c_str()))
                     {
                         changeLanguage();
                         std::cout << "succ, save cookie.dat" << std::endl;

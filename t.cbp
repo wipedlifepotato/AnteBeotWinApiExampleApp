@@ -30,6 +30,9 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
 				</Linker>
 			</Target>
 		</Build>
@@ -43,15 +46,20 @@
 			<Add library="comctl32" />
 			<Add library="curl" />
 			<Add library="gdiplus" />
-			<Add library="winhttp" />
+			<Add library="wininet" />
+			<Add library="jansson" />
 		</Linker>
 		<Unit filename="bin/Debug/rawcapcha.png" />
+		<Unit filename="include/AuthWindow.h" />
 		<Unit filename="include/BaseWindow.h" />
 		<Unit filename="include/MainWindow.h" />
+		<Unit filename="include/RegisterWindow.h" />
 		<Unit filename="include/Util.h" />
+		<Unit filename="src/AuthWindow.cpp" />
 		<Unit filename="src/BaseWindow.cpp" />
 		<Unit filename="src/Main.cpp" />
 		<Unit filename="src/MainWindow.cpp" />
+		<Unit filename="src/RegisterWindow.cpp" />
 		<Unit filename="src/Util.cpp" />
 		<Extensions />
 	</Project>

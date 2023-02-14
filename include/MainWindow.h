@@ -4,6 +4,7 @@
 #define ID_LOGIN_ENTRY 1
 #define ID_PASSWORD_ENTRY 2
 #define MENU_EXIT_ITEM 1000
+#include <commctrl.h>
 
 
 

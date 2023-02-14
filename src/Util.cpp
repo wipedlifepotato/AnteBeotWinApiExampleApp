@@ -1,5 +1,7 @@
 #include"Util.h"
 #include<vector>
+extern HINSTANCE g_hInst;
+
 namespace Util
 {
 namespace Edit
@@ -66,4 +68,5 @@ namespace Encoding {
     }
 
 }
+
 }

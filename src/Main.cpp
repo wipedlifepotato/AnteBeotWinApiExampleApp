@@ -6,10 +6,12 @@
 
 using namespace Gdiplus;
 int gCmdShow;
+HINSTANCE g_hInst;
 extern "C" {
     // HINSTANCE, HINSTANCE, LPSTR, int
     int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
     {
+        g_hInst = hInstance;
         gCmdShow = nCmdShow;
         GdiplusStartupInput gdiplusStartupInput;
         ULONG_PTR           gdiplusToken;
