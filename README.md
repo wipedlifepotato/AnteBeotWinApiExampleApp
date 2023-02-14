@@ -1,4 +1,4 @@
 # AnteBeotWinApiExampleApp
 
-# Feautres
-- Just get captcha + auth pre init. (with session update (on start app))
+# Samples in the app
+- Just get captcha + auth + registration + session update + change language.
